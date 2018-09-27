@@ -1,6 +1,11 @@
 const path = require('path');
 
 module.exports = {
+    resolve: {
+        alias: {                                      //设置Vue被导入时候的包的路径
+            "vue$": "vue/dist/vue.js"
+        }
+    },
     entry: './src/index.js',
     output: {
         filename: 'main.js',
@@ -27,11 +32,12 @@ module.exports = {
                     'file-loader'
                 ]
             },
-            { 
+            {
                 test: /\.js$/, //打包高级语法
-                exclude: /node_modules/, 
-                loader: "babel-loader" 
-            }
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
+            { test: /\.vue$/, use: 'vue-loader' }
         ]
     }
 };
