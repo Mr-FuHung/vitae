@@ -6,6 +6,7 @@ import two from './components/two.vue'
 import three from './components/three.vue'
 import four from './components/four.vue'
 import five from './components/five.vue'
+import six from './components/six.vue'
 
 export default new VueRouter({
     routes: [{
@@ -31,6 +32,10 @@ export default new VueRouter({
     {
         path: '/five',
         component: five
+    },
+    {
+        path: '/six',
+        component: six
     },
     ]
 })

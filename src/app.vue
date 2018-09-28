@@ -7,6 +7,7 @@
         <router-link tag="a" to='/three' title='three'></router-link>
         <router-link tag="a" to='/four' title="four"></router-link>
         <router-link tag="a" to='/five' title="five"></router-link>
+        <router-link tag="a" to='/six' title="six"></router-link>
         </div>
     </div>
 </template>
@@ -53,8 +54,8 @@ body {
     display: block;
     border-radius: 50%;
     border: 0.03rem #fff solid;
-    width: 0.05rem;
-    height: 0.05rem;
+    width: 0.07rem;
+    height: 0.07rem;
     background: #3b7fb9;
   }
   .router-link-active {
