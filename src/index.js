@@ -1,13 +1,14 @@
-import './index.css';
-import Vue from 'vue';
+// import './index.min.css';
+import Vue from 'vue'
+import app from './app.vue'
+import router from './router.js'
 
 // Vue.config.productionTip = false
 new Vue({
-    el:'#app',
-    data:{
-        msg:123
+    el: '#app',
+    template: '<app/>',
+    components: {
+        app
     },
-    created() {
-        console.log(1)
-    }
+    router
 })
