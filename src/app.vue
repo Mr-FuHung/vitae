@@ -14,9 +14,19 @@
 <script>
 </script>
 <style lang="scss" >
-*,img,p,ul,li,ol,div,a,span,input,button{
-    padding: 0;
-    margin: 0;
+*,
+img,
+p,
+ul,
+li,
+ol,
+div,
+a,
+span,
+input,
+button {
+  padding: 0;
+  margin: 0;
 }
 html {
   font-size: calc(100vw / 10.62);
@@ -25,8 +35,8 @@ html,
 body {
   width: 100%;
   height: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   //   max-width: 960px;
   //   max-height: 500px;
 }
@@ -62,5 +72,9 @@ body {
     -webkit-animation: bor 1.5s ease infinite;
     animation: bor 1.5s ease infinite;
   }
+}
+#app {
+  width: 100%;
+  height: 100%;
 }
 </style>
