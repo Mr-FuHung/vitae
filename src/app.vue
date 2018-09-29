@@ -10,10 +10,52 @@
         <router-link tag="a" to='/four' title="four"></router-link>
         <router-link tag="a" to='/five' title="five"></router-link>
         <router-link tag="a" to='/six' title="six"></router-link>
+        <div class="audio" @click="audio" ref="audioimg">
+          <p></p>
         </div>
+        </div>
+        <audio src="./audio.mp3"  ref="audio" autoplay loop></audio>
     </div>
 </template>
 <script>
+export default {
+  data() {
+    return {
+      ding: "",
+      deg: 1
+    };
+  },
+  methods: {
+    audio() {
+      let music = this.$refs.audio;
+      //音频播放事件
+
+      if (music.paused) {
+        // 播放
+        clearInterval(this.ding);
+        music.play();
+        this.xuanzuan();
+      } else {
+        //暂停
+        clearInterval(this.ding);
+        music.pause();
+      }
+    },
+    xuanzuan() {
+      this.ding = setInterval(() => {
+        this.deg++;
+        this.$refs.audioimg.style.transform = "rotate(" + this.deg + "deg)";
+      }, 50);
+    }
+  },
+  mounted() {
+    let music = this.$refs.audio;
+    music.addEventListener("canplay", () => {
+      music.play();
+      this.xuanzuan();
+    });
+  }
+};
 </script>
 <style lang="scss" >
 *,
@@ -74,24 +116,47 @@ body {
     -webkit-animation: bor 1.5s ease infinite;
     animation: bor 1.5s ease infinite;
   }
+  > .audio {
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: url("./img/love.jpg");
+    background-size: 100% 100%;
+    transform: rotate(0);
+    &:hover {
+      cursor: pointer;
+    }
+    p {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      // background: url('./img/iocn.png') no-repeat 0 0;
+      transition: all 1s;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.26);
+      }
+    }
+  }
 }
 #app {
   width: 100%;
   height: 100%;
 }
-.v-enter,.v-leave-to{
+.v-enter,
+.v-leave-to {
   opacity: 0;
   // width: 0;
   // height: 0;
   // transform: translateY(50%)
 }
-.v-enter-active,.v-leave-active{
+.v-enter-active,
+.v-leave-active {
   transition: all 1s;
 }
-.v-move{
+.v-move {
   transition: all 1s;
 }
-.v-leave-active{
+.v-leave-active {
   position: absolute;
 }
 </style>
