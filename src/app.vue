@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <transition>
+          <router-view></router-view>
+        </transition>
         <div class="fixedLink">
         <router-link tag="a" to='/one' title="one"></router-link>
         <router-link tag="a" to='/two'  title="two"></router-link>
@@ -76,5 +78,20 @@ body {
 #app {
   width: 100%;
   height: 100%;
+}
+.v-enter,.v-leave-to{
+  opacity: 0;
+  // width: 0;
+  // height: 0;
+  // transform: translateY(50%)
+}
+.v-enter-active,.v-leave-active{
+  transition: all 1s;
+}
+.v-move{
+  transition: all 1s;
+}
+.v-leave-active{
+  position: absolute;
 }
 </style>
