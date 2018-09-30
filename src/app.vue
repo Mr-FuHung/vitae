@@ -111,6 +111,7 @@ body {
     width: 0.07rem;
     height: 0.07rem;
     background: #3b7fb9;
+    margin-left: -.01rem;
   }
   .router-link-active {
     -webkit-animation: bor 1.5s ease infinite;

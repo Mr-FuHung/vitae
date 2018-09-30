@@ -44,7 +44,8 @@ export default {
       opacity: 0;
       transform: translateX(-50%) translateY(-50%);
       -webkit-transform: translateX(-50%) translateY(-50%);
-      animation: abs 1s 1s linear forwards;
+      animation: abs 1s 0.5s linear forwards;
+      font-weight: 0;
       p {
         text-indent: 0.1rem;
         margin-bottom: 0.1rem;
@@ -56,7 +57,7 @@ export default {
         height: 1rem;
         margin-bottom: 0.3rem;
         border-radius: 50%;
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
       }
@@ -74,11 +75,13 @@ export default {
 @keyframes abs {
   0% {
     opacity: 0;
-    left: 48%;
+    transform: translateX(-55%) translateY(-50%);
+    -webkit-transform: translateX(-55%) translateY(-50%);
   }
   100% {
     opacity: 1;
-    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
   }
 }
 .admine {
