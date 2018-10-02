@@ -1,35 +1,35 @@
 {
-  "name": "vitae",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack-dev-server --open  --contentBase dist --hot"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.2",
-    "babel-preset-env": "^1.7.0",
-    "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
-    "node-sass": "^4.9.3",
-    "sass-loader": "^7.1.0",
-    "scss-loader": "0.0.1",
-    "style-loader": "^0.23.0",
-    "vue-loader": "^15.4.2",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.9"
-  },
-  "dependencies": {
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
-  }
+    "name": "vitae",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack",
+        "dev": "webpack-dev-server --open  --contentBase dist --hot"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.1.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^8.0.2",
+        "babel-preset-env": "^1.7.0",
+        "css-loader": "^1.0.0",
+        "file-loader": "^2.0.0",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "scss-loader": "0.0.1",
+        "style-loader": "^0.23.0",
+        "vue-loader": "^15.4.2",
+        "vue-template-compiler": "^2.5.17",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1",
+        "webpack-dev-server": "^3.1.9"
+    },
+    "dependencies": {
+        "vue": "^2.5.17",
+        "vue-router": "^3.0.1"
+    }
 }
