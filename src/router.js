@@ -8,6 +8,7 @@ import four from './components/four.vue'
 import five from './components/five.vue'
 import six from './components/six.vue'
 
+
 export default new VueRouter({
     routes: [{
         path: '/',
@@ -15,27 +16,27 @@ export default new VueRouter({
     },
     {
         path: '/one',
-        component: one
+        component: resolve => require(['./components/one.vue'],resolve)
     },
     {
         path: '/two',
-        component: two
+        component: resolve => require(['./components/two.vue'],resolve)
     },
     {
         path: '/three',
-        component: three
+        component: resolve => require(['./components/three.vue'],resolve)
     },
     {
         path: '/four',
-        component: four
+        component: resolve => require(['./components/four.vue'],resolve)
     },
     {
         path: '/five',
-        component: five
+        component: resolve => require(['./components/five.vue'],resolve)
     },
     {
         path: '/six',
-        component: six
+        component: resolve => require(['./components/six.vue'],resolve)
     },
     ]
 })
