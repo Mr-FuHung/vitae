@@ -58,14 +58,20 @@ a {
   // background-color: rgba(170, 170, 170, 0.336);
   border-radius: 0.2rem;
   perspective:2000px;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
 .project__card {
   /* 边框阴影 */
   will-change: transform;
-  transition: -webkit-all 0.3s linear;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
   transition: all 0.3s linear;
   box-shadow: 0 10px 30px transparent;
   border-radius: 0.2rem;
@@ -93,6 +99,8 @@ body:hover .project__card {
 .project:hover .project__title,
 .project:hover .project__category {
   -webkit-transform: translateY(0) scale(1);
+  -o-transform: translateY(0) scale(1);
+  -moz-transform: translateY(0) scale(1);
   -ms-transform: translateY(0) scale(1);
   transform: translateY(0) scale(1);
   opacity: 1;
