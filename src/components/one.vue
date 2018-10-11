@@ -46,14 +46,14 @@ export default {
     function move(event) {
       var w = project.offsetWidth;
       var h = project.offsetHeight,
-        ax = -(w / 2 - event.offsetX) / settings.sensitivity,
-        ay = (h / 2 - event.offsetY) / settings.sensitivity,
+        ax = -(w / 2 - event.offsetX) / 30,
+        ay = (h / 2 - event.offsetY) / 10,
         dy = event.offsetY - h / 2,
         dx = event.offsetX - w / 2,
         theta = Math.atan2(dy, dx),
         angle = (theta * 180) / Math.PI - 90;
-        console.log(event.offsetX)
-        console.log(ax)
+      console.log(event.offsetX);
+      console.log(ax);
 
       if (angle < 0) {
         angle = angle + 360;
@@ -65,9 +65,9 @@ export default {
       shine.style.background =
         "linear-gradient(" +
         angle +
-        "deg, rgba(255,255,255," +
+        "deg, rgba(0,0,255," +
         (event.offsetY / h) * 0.5 +
-        ") 0%,rgba(255,255,255,0) 80%)";
+        ") 0%,rgba(0,0,255,255) 80%)";
     }
     function leave() {
       card.classList.add(settings.hoverOutClass);
@@ -122,12 +122,6 @@ a {
   border-radius: 0.2rem;
   width: 100%;
   height: 100%;
-  position: "absolute";
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 9;
 }
 
 .project__card.hover-in {
@@ -149,7 +143,14 @@ a {
 .project:hover .project__image:after {
   opacity: 1;
 }
-
+.shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9;
+}
 .project:hover .project__detail {
   border-width: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
