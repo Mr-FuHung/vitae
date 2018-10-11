@@ -67,12 +67,12 @@ a {
 
 .project__card {
   /* 边框阴影 */
-  will-change: transform;
-  -webkit-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -ms-transition: all 0.3s linear;
-  transition: all 0.3s linear;
+  will-change: box-shadow;
+  -webkit-transition: box-shadow 0.5s linear;
+  -o-transition: box-shadow 0.5s linear;
+  -moz-transition: box-shadow 0.5s linear;
+  -ms-transition: box-shadow 0.5s linear;
+  transition: box-shadow .5s linear;
   box-shadow: 0 10px 30px transparent;
   border-radius: 0.2rem;
   width: 100%;
@@ -80,7 +80,7 @@ a {
 }
 
 body:hover .project__card {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 .1rem .5rem  rgba(0, 0, 0, 0.4);
 }
 
 .shine {
