@@ -183,10 +183,5 @@ body {
 .v-leave-active {
   transition: all 1s;
 }
-.v-move {
-  transition: all 1s;
-}
-.v-leave-active {
-  position: absolute;
-}
+
 </style>
