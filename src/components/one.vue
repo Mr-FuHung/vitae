@@ -4,7 +4,7 @@
 				<div class="project__card" ref="card">
 					<a href="" class="project__image"></a>
 					<div class="project__detail">
-						
+						123
 					</div>
                     <div class="shine" ref="shine"></div>
 				</div>
@@ -18,9 +18,9 @@ export default {
   },
   methods: {
     enter() {
-      card.classList.add("hover-in");
-      setTimeout(function() {
-        card.classList.remove("hover-in");
+      this.$refs.card.classList.add("hover-in");
+      setTimeout(() => {
+        this.$refs.card.classList.remove("hover-in");
       }, 1000);
     }
   },
@@ -29,48 +29,37 @@ export default {
       selector: ".project__card",
       perspective: 1000,
       sensitivity: 20,
-      invert: false,
-      shine: true,
       hoverInClass: "hover-in",
       hoverOutClass: "hover-out"
     };
 
     var project = this.$refs.project,
-      card = this.$refs.card;
-    var shine = this.$refs.shine;
+      card = this.$refs.card,
+      shine = this.$refs.shine;
 
-    // Set perspective and transformStyle value
-    // for element and 3d object
     project.style.perspective = settings.perspective + "px";
     project.style.transformStyle = "preserve-3d";
 
-    card.style.perspective = settings.perspective + "px";
-    card.style.transformStyle = "preserve-3d";
+    // card.style.perspective = settings.perspective + "px";
+    // card.style.transformStyle = "preserve-3d";
 
-    // Mouse Enter function, this will add hover-in
-    // Class so when mouse over it will add transition
-    // based on hover-in class
-
-    // Mouse movement Parallax effect
     function move(event) {
       var w = project.offsetWidth;
-      var h = project.offsetWidth,
-        ax = settings.invert
-          ? (w / 2 - event.offsetX) / settings.sensitivity
-          : -(w / 2 - event.offsetX) / settings.sensitivity,
-        ay = settings.invert
-          ? -(h / 2 - event.offsetY) / settings.sensitivity
-          : (h / 2 - event.offsetY) / settings.sensitivity,
+      var h = project.offsetHeight,
+        ax = -(w / 2 - event.offsetX) / settings.sensitivity,
+        ay = (h / 2 - event.offsetY) / settings.sensitivity,
         dy = event.offsetY - h / 2,
         dx = event.offsetX - w / 2,
         theta = Math.atan2(dy, dx),
         angle = (theta * 180) / Math.PI - 90;
+        console.log(event.offsetX)
+        console.log(ax)
 
       if (angle < 0) {
         angle = angle + 360;
       }
-      card.style.perspective = settings.perspective + "px";
-      card.style.transformStyle = "preserve-3d";
+      // card.style.perspective = settings.perspective + "px";
+      // card.style.transformStyle = "preserve-3d";
       card.style.transform = "rotateY(" + ax + "deg) rotateX(" + ay + "deg)";
 
       shine.style.background =
@@ -80,13 +69,10 @@ export default {
         (event.offsetY / h) * 0.5 +
         ") 0%,rgba(255,255,255,0) 80%)";
     }
-    // Mouse leave function, will set the transform
-    // property to 0, and add transition class
-    // for exit animation
     function leave() {
       card.classList.add(settings.hoverOutClass);
-      card.style.perspective = settings.perspective + "px";
-      card.style.transformStyle = "preserve-3d";
+      // card.style.perspective = settings.perspective + "px";
+      // card.style.transformStyle = "preserve-3d";
       card.style.transform = "rotateX(0) rotateY(0)";
 
       setTimeout(function() {
@@ -94,14 +80,10 @@ export default {
       }, 1000);
     }
 
-    // Mouseenter event binding
-
-    // Mousemove event binding
     project.onmousemove = function(event) {
       move(event);
     };
 
-    // Mouseleave event binding
     project.onmouseleave = function() {
       leave();
     };
@@ -123,30 +105,13 @@ a {
   left: 50%;
   margin-top: -1.5rem;
   margin-left: -3rem;
-  background-color: rgba(170, 170, 170, 0.336);
+  // background-color: rgba(170, 170, 170, 0.336);
   border-radius: 0.2rem;
 }
 
 .project__image {
   display: block;
   position: relative;
-}
-
-.project__image:after {
-  /* 渐变 */
-  content: " ";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: linear-gradient(
-    rgba(230, 17, 17, 0.836),
-    rgba(13, 34, 218, 0.829)
-  );
-  transition: opacity 0.3s ease;
-  z-index: 999;
-  opacity: 0;
 }
 
 .project__card {
