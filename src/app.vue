@@ -122,6 +122,8 @@ export default {
   created() {
     if (window.location.protocol == "file:") {
       this.origin = window.location.origin + window.location.pathname;
+    } else if (window.location.protocol == "https:") {
+      this.origin = window.location.origin + window.location.pathname;
     } else {
       this.origin = window.location.origin + "/";
     }
