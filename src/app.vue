@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <transition>
+       <transition
+@after-enter ="afterEnter "
+   mode="out-in" >
           <router-view></router-view>
         </transition>
         <div class="fixedLink">
@@ -23,7 +25,10 @@ export default {
     return {
       ding: "",
       deg: 1,
-      num:1
+      skip: true,
+      vueAnimation: ["one", "two", "three", "four", "five", "six"],
+      arrInd: 0,
+      origin: ""
     };
   },
   methods: {
@@ -47,6 +52,64 @@ export default {
         this.deg++;
         this.$refs.audioimg.style.transform = "rotate(" + this.deg + "deg)";
       }, 50);
+    },
+    afterEnter() {
+      this.skip = true;
+    },
+    scrollFunc(e) {
+      // var direct = 0;
+      e = e || window.event;
+      if (this.skip) {
+        this.skip = false;
+        if (this.arrInd == "0" || this.arrInd == this.vueAnimation.length - 1) {
+          this.skip = true;
+        }
+        if (e.wheelDelta) {
+          //判断浏览器IE，谷歌滑轮事件
+          if (e.wheelDelta > 0) {
+            //当滑轮向上滚动时
+            this.arrInd -= 1;
+            this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
+            window.location.href = `${this.origin}#/${
+              this.vueAnimation[this.arrInd]
+            }`;
+          }
+          if (e.wheelDelta < 0) {
+            //当滑轮向下滚动时
+            this.arrInd += 1;
+            this.arrInd =
+              this.arrInd >= this.vueAnimation.length
+                ? this.vueAnimation.length - 1
+                : this.arrInd;
+            window.location.href = `${this.origin}#/${
+              this.vueAnimation[this.arrInd]
+            }`;
+          }
+        } else if (e.detail) {
+          //Firefox滑轮事件
+          if (e.detail > 0) {
+            //当滑轮向上滚动时
+            this.arrInd -= 1;
+            this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
+            window.location.href = `${this.origin}#/${
+              this.vueAnimation[this.arrInd]
+            }`;
+          }
+          if (e.detail < 0) {
+            //当滑轮向下滚动时
+
+            this.arrInd += 1;
+            this.arrInd =
+              this.arrInd >= this.vueAnimation.length
+                ? this.vueAnimation.length - 1
+                : this.arrInd;
+            window.location.href = `${this.origin}#/${
+              this.vueAnimation[this.arrInd]
+            }`;
+          }
+        }
+      }
+      // ScrollText(direct);
     }
   },
   mounted() {
@@ -56,34 +119,27 @@ export default {
       this.xuanzuan();
     });
   },
-  // created(){
-  //   let scrollFunc = function (e) {
-  //       var direct = 0;
-  //       e = e || window.event;
-  //       if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件             
-  //           if (e.wheelDelta > 0) { //当滑轮向上滚动时
-  //               alert("滑轮向上滚动");
-  //           }
-  //           if (e.wheelDelta < 0) { //当滑轮向下滚动时
-  //               alert("滑轮向下滚动");
-  //           }
-  //       } else if (e.detail) {  //Firefox滑轮事件
-  //           if (e.detail> 0) { //当滑轮向上滚动时
-  //               alert("滑轮向上滚动");
-  //           }
-  //           if (e.detail< 0) { //当滑轮向下滚动时
-  //               alert("滑轮向下滚动");
-  //           }
-  //       }
-  //       ScrollText(direct);
-  //   }
-  //   //给页面绑定滑轮滚动事件
-  //   if (document.addEventListener) {
-  //       document.addEventListener('DOMMouseScroll', scrollFunc, false);
-  //   }
-  //   //滚动滑轮触发scrollFunc方法
-  //   window.onmousewheel = document.onmousewheel = scrollFunc;  
-  // }
+  created() {
+    if (window.location.protocol == "file:") {
+      this.origin = window.location.origin + window.location.pathname;
+    } else {
+      this.origin = window.location.origin + "/";
+    }
+
+    console.log(window.location);
+    //给页面绑定滑轮滚动事件
+    if (document.addEventListener) {
+      document.addEventListener("DOMMouseScroll", this.scrollFunc, false);
+    }
+    //滚动滑轮触发scrollFunc方法
+    window.onmousewheel = document.onmousewheel = this.scrollFunc;
+  },
+  watch: {
+    $route(newval, oldvla) {
+      let path = newval.path.substr(1);
+      this.arrInd = this.vueAnimation.indexOf(path);
+    }
+  }
 };
 </script>
 <style lang="scss" >
@@ -140,7 +196,7 @@ body {
     width: 0.07rem;
     height: 0.07rem;
     background: #3b7fb9;
-    margin-left: -.01rem;
+    margin-left: -0.01rem;
   }
   .router-link-active {
     -webkit-animation: bor 1.5s ease infinite;
@@ -172,16 +228,14 @@ body {
   width: 100%;
   height: 100%;
 }
-.v-enter,
 .v-leave-to {
-  opacity: 0;
-  // width: 0;
-  // height: 0;
-  // transform: translateY(50%)
+  transform: rotateX(90deg);
+}
+.v-enter {
+  transform: rotateX(90deg);
 }
 .v-enter-active,
 .v-leave-active {
-  transition: all 1s;
+  transition: all 1s linear;
 }
-
 </style>
