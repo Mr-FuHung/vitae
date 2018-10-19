@@ -61,13 +61,14 @@ export default {
       e = e || window.event;
       if (this.skip) {
         this.skip = false;
-        if (this.arrInd == "0" || this.arrInd == this.vueAnimation.length - 1) {
-          this.skip = true;
-        }
+
         if (e.wheelDelta) {
           //判断浏览器IE，谷歌滑轮事件
           if (e.wheelDelta > 0) {
             //当滑轮向上滚动时
+            if (this.arrInd == "0") {
+              this.skip = true;
+            }
             this.arrInd -= 1;
             this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
             window.location.href = `${this.origin}#/${
@@ -76,6 +77,9 @@ export default {
           }
           if (e.wheelDelta < 0) {
             //当滑轮向下滚动时
+            if (this.arrInd == this.vueAnimation.length - 1) {
+              this.skip = true;
+            }
             this.arrInd += 1;
             this.arrInd =
               this.arrInd >= this.vueAnimation.length
@@ -88,6 +92,9 @@ export default {
         } else if (e.detail) {
           //Firefox滑轮事件
           if (e.detail > 0) {
+            if (this.arrInd == "0") {
+              this.skip = true;
+            }
             //当滑轮向上滚动时
             this.arrInd -= 1;
             this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
@@ -97,7 +104,9 @@ export default {
           }
           if (e.detail < 0) {
             //当滑轮向下滚动时
-
+            if (this.arrInd == this.vueAnimation.length - 1) {
+              this.skip = true;
+            }
             this.arrInd += 1;
             this.arrInd =
               this.arrInd >= this.vueAnimation.length
@@ -118,6 +127,7 @@ export default {
       music.play();
       this.xuanzuan();
     });
+    document.body.removeChild(document.getElementById('Loading'))
   },
   created() {
     if (window.location.protocol == "file:") {
@@ -135,6 +145,7 @@ export default {
     }
     //滚动滑轮触发scrollFunc方法
     window.onmousewheel = document.onmousewheel = this.scrollFunc;
+    
   },
   watch: {
     $route(newval, oldvla) {
@@ -238,6 +249,6 @@ body {
 }
 .v-enter-active,
 .v-leave-active {
-  transition: all 1s linear;
+  transition: all 1s ;
 }
 </style>
