@@ -1,8 +1,11 @@
 <template>
     <div id="app">
-       <transition
-@after-enter ="afterEnter "
-   mode="out-in" >
+       <div id="bgc">{{exhibition}}</div>
+      <!--  -->
+       <transition mode="out-in" @after-enter ="afterEnter " @enter='enter' 
+       enter-active-class='animated  rollIn' 
+       :duration='1000' 
+       leave-active-class='animated rollOut'>
           <router-view></router-view>
         </transition>
         <div class="fixedLink">
@@ -12,14 +15,16 @@
         <router-link tag="a" to='/four' title="four"></router-link>
         <router-link tag="a" to='/five' title="five"></router-link>
         <router-link tag="a" to='/six' title="six"></router-link>
-        <div class="audio" @click="audio" ref="audioimg">
-          <p></p>
+        <div class="audio" @click="audio" >
+          <p ref="audioimg"></p>
+          <span :class="{spanPlay:!playStatus,spanStop:playStatus}"></span>
         </div>
         </div>
         <audio src="./audio.mp3"  ref="audio" autoplay loop></audio>
     </div>
 </template>
 <script>
+import "animate.css";
 export default {
   data() {
     return {
@@ -28,7 +33,9 @@ export default {
       skip: true,
       vueAnimation: ["one", "two", "three", "four", "five", "six"],
       arrInd: 0,
-      origin: ""
+      origin: "",
+      exhibition: "",
+      playStatus: false
     };
   },
   methods: {
@@ -38,14 +45,17 @@ export default {
 
       if (music.paused) {
         // 播放
+        this.playStatus = false;
         clearInterval(this.ding);
         music.play();
-        this.xuanzuan();
+        this.xuanzuan()
       } else {
         //暂停
+        this.playStatus = true;
         clearInterval(this.ding);
         music.pause();
       }
+
     },
     xuanzuan() {
       this.ding = setInterval(() => {
@@ -55,6 +65,9 @@ export default {
     },
     afterEnter() {
       this.skip = true;
+    },
+    enter() {
+      this.exhibition = "";
     },
     scrollFunc(e) {
       // var direct = 0;
@@ -127,7 +140,7 @@ export default {
       music.play();
       this.xuanzuan();
     });
-    document.body.removeChild(document.getElementById('Loading'))
+    document.body.removeChild(document.getElementById("Loading"));
   },
   created() {
     if (window.location.protocol == "file:") {
@@ -145,12 +158,12 @@ export default {
     }
     //滚动滑轮触发scrollFunc方法
     window.onmousewheel = document.onmousewheel = this.scrollFunc;
-    
   },
   watch: {
     $route(newval, oldvla) {
       let path = newval.path.substr(1);
       this.arrInd = this.vueAnimation.indexOf(path);
+      this.exhibition = `欢迎来到${path}页面`;
     }
   }
 };
@@ -219,36 +232,55 @@ body {
     width: 0.3rem;
     height: 0.3rem;
     border-radius: 50%;
-    background: url("./img/love.jpg");
-    background-size: 100% 100%;
-    transform: rotate(0);
+    position: relative;
     &:hover {
       cursor: pointer;
     }
     p {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border-radius: 50%;
       // background: url('./img/iocn.png') no-repeat 0 0;
+      background: url("./img/love.jpg");
+      transform: rotate(0);
+
+      background-size: 100% 100%;
+    }
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      z-index: 9;
+      opacity: 0;
       transition: all 1s;
       &:hover {
-        background-color: rgba(255, 255, 255, 0.26);
+        opacity: 1;
       }
+    }
+
+    .spanStop {
+      background: url("./img/iocn1.png") center center no-repeat;
+      background-color:rgba(222, 222, 222, .4);
+
+      background-size: 70% 70%;
+    }
+    .spanPlay {
+      background: url("./img/iocn.png") center center no-repeat;
+      background-color:rgba(222, 222, 222, .4);
+
+      background-size: 70% 70%;
     }
   }
 }
 #app {
   width: 100%;
   height: 100%;
-}
-.v-leave-to {
-  transform: rotateX(90deg);
-}
-.v-enter {
-  transform: rotateX(90deg);
-}
-.v-enter-active,
-.v-leave-active {
-  transition: all 1s ;
 }
 </style>
