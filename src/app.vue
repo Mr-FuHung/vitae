@@ -20,7 +20,7 @@
           <span :class="{spanPlay:!playStatus,spanStop:playStatus}"></span>
         </div>
         </div>
-        <audio src="./audio.mp3"  ref="audio" autoplay loop></audio>
+        <audio src="./550e8400-e19b-41d4-a716-446655440000.img" ref="audio" autoplay loop></audio>
     </div>
 </template>
 <script>
