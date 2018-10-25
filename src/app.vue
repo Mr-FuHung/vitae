@@ -20,7 +20,7 @@
           <span :class="{spanPlay:!playStatus,spanStop:playStatus}"></span>
         </div>
         </div>
-        <audio src="./550e8400-e19b-41d4-a716-446655440000.img" ref="audio" autoplay loop></audio>
+        <audio src="./550e8400-e19b-41d4-a716-446655440000.img" ref="audio"  loop></audio>
     </div>
 </template>
 <script>
@@ -209,6 +209,7 @@ body {
   position: fixed;
   top: 50%;
   right: 0.4rem;
+  z-index: 999;
   width: 0;
   height: 2rem;
   margin-top: -1rem;

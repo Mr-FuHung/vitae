@@ -1,6 +1,17 @@
 <template>
-    <div class="swiper">
-       <div class="project" @mouseleave='leave' @mousemove='move' @mouseenter='enter'>
+    <div class="one">
+      <div class="swiper">
+        <div  class="swiper_1">
+          <img src="./../img/lun2.jpg" alt="">
+        </div>
+        <div class="swiper_2">
+          <img src="./../img/lun2.jpg"  alt="">
+        </div>
+        <div class="swiper_3">
+          <img src="./../img/lun2.jpg"  alt="">
+        </div>
+      </div>
+       <div class="project" @mouseleave='leave' @mousemove='move'>
 				<div class="project__card" >
 					<a href="" class="project__image"></a>
 					<div class="project__detail">
@@ -17,16 +28,10 @@ export default {
     return {};
   },
   methods: {
-    enter() {
-      // this.card.classList.add("hover-in");
-      // setTimeout(() => {
-      //   this.card.classList.remove("hover-in");
-      // }, 100);
-    },
     leave() {
       this.card.classList.add("hover-out");
       this.card.style.transform = "rotateX(0) rotateY(0)";
-       this.shine.style.background = `radial-gradient(circle at 0px 0px, transparent, transparent)`;
+      this.shine.style.background = `radial-gradient(circle at 0px 0px, transparent, transparent)`;
       setTimeout(() => {
         this.card.classList.remove("hover-out");
       }, 1000);
@@ -38,7 +43,9 @@ export default {
         ay = -(h / 2 - event.offsetY) / 20;
 
       this.card.style.transform = `scale(1.02) translate(${ax}px , ${ay}px) rotateY(${ax}deg) rotateX(${ay}deg)`;
-      this.shine.style.background = `radial-gradient(circle at ${event.offsetX}px ${event.offsetY}px, rgba(255, 255, 255,.7), transparent)`;
+      this.shine.style.background = `radial-gradient(circle at ${
+        event.offsetX
+      }px ${event.offsetY}px, rgba(255, 255, 255,.7), transparent)`;
     }
   },
   mounted() {
@@ -50,11 +57,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper{
+.one {
   width: 100%;
   height: 100%;
   background-color: #aaa;
-
 }
 a {
   text-decoration: none;
@@ -77,6 +83,7 @@ a {
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  z-index: 99;
 }
 
 .project__card {
@@ -118,7 +125,7 @@ body:hover .project__card {
   transition: transform 0.5s linear, -webkit-transform 0.5s linear;
 }
 .project__card.hover-in {
-   will-change: transform;
+  will-change: transform;
   transition: -webkit-transform 0.1s linear;
   transition: transform 0.1s linear;
   transition: transform 0.1s linear, -webkit-transform 0.1s linear;
@@ -154,5 +161,44 @@ body:hover .project__card {
   transform: translateZ(30px);
   border: 0 solid #00bcd4;
   transition: border 0.4s ease;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  img {
+    width: 10.62rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+  div {
+    position: absolute;
+    top: 0;
+    width: 33.333%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .swiper_1 {
+    left: 0;
+    img {
+      left: 0;
+    }
+  }
+  .swiper_2 {
+    left: 33.333%;
+    img {
+      left:-100%;
+    }
+  }
+  .swiper_3 {
+    left: 66.666%;
+    img {
+      left: -200%;;
+    }
+  }
 }
 </style>
