@@ -47,14 +47,13 @@ export default {
         this.playStatus = false;
         clearInterval(this.ding);
         music.play();
-        this.xuanzuan()
+        this.xuanzuan();
       } else {
         //暂停
         this.playStatus = true;
         clearInterval(this.ding);
         music.pause();
       }
-
     },
     xuanzuan() {
       this.ding = setInterval(() => {
@@ -266,13 +265,13 @@ body {
 
     .spanStop {
       background: url("./img/iocn1.png") center center no-repeat;
-      background-color:rgba(222, 222, 222, .4);
+      background-color: rgba(222, 222, 222, 0.4);
 
       background-size: 70% 70%;
     }
     .spanPlay {
       background: url("./img/iocn.png") center center no-repeat;
-      background-color:rgba(222, 222, 222, .4);
+      background-color: rgba(222, 222, 222, 0.4);
 
       background-size: 70% 70%;
     }
