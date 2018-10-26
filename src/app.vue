@@ -156,6 +156,17 @@ export default {
     }
     //滚动滑轮触发scrollFunc方法
     window.onmousewheel = document.onmousewheel = this.scrollFunc;
+
+    document.oncontextmenu = function() {
+      return false;
+    };
+    document.onkeydown = function(event) {
+      var ev = event || window.event || arguments.callee.caller.arguments[0];
+      if (ev.keyCode == "123") {
+        window.location.href='https://baijiahao.baidu.com/s?id=1605742984765506500&wfr=spider&for=pc';
+        return false;
+      }
+    };
   },
   watch: {
     $route(newval, oldvla) {
