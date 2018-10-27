@@ -54,7 +54,7 @@ export default {
       this.card.style.transform = `scale(1.02) translate(${ax}px , ${ay}px) rotateY(${ax}deg) rotateX(${ay}deg)`;
       this.shine.style.background = `radial-gradient(circle at ${
         event.offsetX
-      }px ${event.offsetY}px, rgba(10, 10, 10,.2) 10%,  rgba(50, 50, 50,.2) 30%,rgba(80, 80, 80,.1) 50%,rgba(110, 110, 110,.1) 70%,transparent 100%)`;
+      }px ${event.offsetY}px, rgba(255, 255, 255,.4) 10%,  rgba(222, 222, 222,.3) 30%,rgba(210, 210, 210,.2) 50%,rgba(199, 199, 199,.1) 70%,transparent 100%)`;
     }
   },
   mounted() {
@@ -77,13 +77,13 @@ a {
 }
 
 .project {
-  width: 6rem;
-  height: 3rem;
+  width: 7.2rem;
+  height: 2.9rem;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -1.5rem;
-  margin-left: -3rem;
+  margin-top: -1.45rem;
+  margin-left: -3.6rem;
   // background-color: rgba(170, 170, 170, 0.336);
   border-radius: 0.2rem;
   perspective: 2000px;

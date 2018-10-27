@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 #two {
-  font-size: 0.1rem;
+  font-size: 0.16rem;
   color: #fff;
   position: relative;
   width: 100%;
@@ -37,7 +37,7 @@ export default {
     width: 100%;
     height: 100%;
     > nav {
-      width: 5rem;
+      width: 8.5rem;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -47,14 +47,14 @@ export default {
       animation: abs 1s 0.5s linear forwards;
       font-weight: 0;
       p {
-        text-indent: 0.1rem;
-        margin-bottom: 0.1rem;
+        text-indent: 0.4rem;
+        margin-bottom: 0.2rem;
       }
       img {
         display: block;
         margin: 0 auto;
-        width: 1rem;
-        height: 1rem;
+        width: 2rem;
+        height: 2rem;
         margin-bottom: 0.3rem;
         border-radius: 50%;
         &:hover {
@@ -69,7 +69,7 @@ export default {
     box-shadow: 0 0 0 0.01rem #4797b7;
   }
   100% {
-    box-shadow: 0 0 0.2rem 0.1rem rgba(151, 166, 248, 0);
+    box-shadow: 0 0 0.2rem 0.5rem rgba(151, 166, 248, 0);
   }
 }
 @keyframes abs {
