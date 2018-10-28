@@ -100,67 +100,72 @@ export default {
       this.exhibition = "";
     },
     scrollFunc(e) {
-      // var direct = 0;
-      e = e || window.event;
-      if (this.skip) {
-        this.skip = false;
+      if (this.$store.state.count) {
+        e = e || window.event;
+        if (this.skip) {
+          this.skip = false;
 
-        if (e.wheelDelta) {
-          //判断浏览器IE，谷歌滑轮事件
-          if (e.wheelDelta > 0) {
-            //当滑轮向上滚动时
-            if (this.arrInd == "0") {
-              this.skip = true;
+          if (e.wheelDelta) {
+            //判断浏览器IE，谷歌滑轮事件
+            if (e.wheelDelta > 0) {
+              //当滑轮向上滚动时
+              if (this.arrInd == "0") {
+                this.skip = true;
+              }
+              this.arrInd -= 1;
+              this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
+              window.location.href = `${this.origin}#/${
+                this.vueAnimation[this.arrInd]
+              }`;
             }
-            this.arrInd -= 1;
-            this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
-            window.location.href = `${this.origin}#/${
-              this.vueAnimation[this.arrInd]
-            }`;
-          }
-          if (e.wheelDelta < 0) {
-            //当滑轮向下滚动时
-            if (this.arrInd == this.vueAnimation.length - 1) {
-              this.skip = true;
+            if (e.wheelDelta < 0) {
+              //当滑轮向下滚动时
+              if (this.arrInd == this.vueAnimation.length - 1) {
+                this.skip = true;
+              }
+              this.arrInd += 1;
+              this.arrInd =
+                this.arrInd >= this.vueAnimation.length
+                  ? this.vueAnimation.length - 1
+                  : this.arrInd;
+              window.location.href = `${this.origin}#/${
+                this.vueAnimation[this.arrInd]
+              }`;
             }
-            this.arrInd += 1;
-            this.arrInd =
-              this.arrInd >= this.vueAnimation.length
-                ? this.vueAnimation.length - 1
-                : this.arrInd;
-            window.location.href = `${this.origin}#/${
-              this.vueAnimation[this.arrInd]
-            }`;
-          }
-        } else if (e.detail) {
-          //Firefox滑轮事件
-          if (e.detail > 0) {
-            if (this.arrInd == "0") {
-              this.skip = true;
+          } else if (e.detail) {
+            //Firefox滑轮事件
+            if (e.detail > 0) {
+              if (this.arrInd == "0") {
+                this.skip = true;
+              }
+              //当滑轮向上滚动时
+              this.arrInd -= 1;
+              this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
+              window.location.href = `${this.origin}#/${
+                this.vueAnimation[this.arrInd]
+              }`;
             }
-            //当滑轮向上滚动时
-            this.arrInd -= 1;
-            this.arrInd = this.arrInd <= 0 ? 0 : this.arrInd;
-            window.location.href = `${this.origin}#/${
-              this.vueAnimation[this.arrInd]
-            }`;
-          }
-          if (e.detail < 0) {
-            //当滑轮向下滚动时
-            if (this.arrInd == this.vueAnimation.length - 1) {
-              this.skip = true;
+            if (e.detail < 0) {
+              //当滑轮向下滚动时
+              if (this.arrInd == this.vueAnimation.length - 1) {
+                this.skip = true;
+              }
+              this.arrInd += 1;
+              this.arrInd =
+                this.arrInd >= this.vueAnimation.length
+                  ? this.vueAnimation.length - 1
+                  : this.arrInd;
+              window.location.href = `${this.origin}#/${
+                this.vueAnimation[this.arrInd]
+              }`;
             }
-            this.arrInd += 1;
-            this.arrInd =
-              this.arrInd >= this.vueAnimation.length
-                ? this.vueAnimation.length - 1
-                : this.arrInd;
-            window.location.href = `${this.origin}#/${
-              this.vueAnimation[this.arrInd]
-            }`;
           }
         }
+      } else {
+        return false;
       }
+      // var direct = 0;
+
       // ScrollText(direct);
     },
     title() {
@@ -191,8 +196,7 @@ export default {
     document.body.removeChild(document.getElementById("Loading"));
     this.$refs.navbar.style.borderBottomWidth = window.innerHeight + "px";
 
-    this.$refs.smallShow.style.marginBottom =
-      -(window.innerHeight - 50) + "px";
+    this.$refs.smallShow.style.marginBottom = -(window.innerHeight - 50) + "px";
     // console.log(this.$refs.navbar);
   },
   created() {
@@ -523,6 +527,7 @@ body {
   bottom: 0;
   background-color: transparent;
   display: flex;
+  // flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   p {
