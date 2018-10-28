@@ -28,9 +28,9 @@ export default {
   watch: {
     status: function(new1) {
     if(new1){
-      this.$store.state.count=false;
+      this.$store.state.mapStatus=false;
     }else{
-      this.$store.state.count=true;
+      this.$store.state.mapStatus=true;
     }
     }
   }

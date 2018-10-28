@@ -100,7 +100,7 @@ export default {
       this.exhibition = "";
     },
     scrollFunc(e) {
-      if (this.$store.state.count) {
+      if (this.$store.state.mapStatus) {
         e = e || window.event;
         if (this.skip) {
           this.skip = false;
