@@ -38,6 +38,15 @@
         <router-link tag="li" to='/six' title="six">six
         </router-link>
 </ul>
+<div class="smallShow" ref="smallShow">
+<img src="./img/F.png" alt="F" style="width:.6rem">
+<p>符</p>
+<p>
+  <span>·Rieko's resume</span>
+  <span>QQ:1002150110</span>
+</p>
+<p>洪</p>
+</div>
 </div>
         </transition>
         <div class="title" @click="title" >
@@ -181,6 +190,9 @@ export default {
     });
     document.body.removeChild(document.getElementById("Loading"));
     this.$refs.navbar.style.borderBottomWidth = window.innerHeight + "px";
+
+    this.$refs.smallShow.style.marginBottom =
+      -(window.innerHeight - 50) + "px";
     // console.log(this.$refs.navbar);
   },
   created() {
@@ -200,19 +212,21 @@ export default {
     //滚动滑轮触发scrollFunc方法
     window.onmousewheel = document.onmousewheel = this.scrollFunc;
 
-    document.oncontextmenu = function() {
-      return false;
-    };
-    document.onkeydown = function(event) {
-      var ev = event || window.event || arguments.callee.caller.arguments[0];
-      if (ev.keyCode == "123") {
-        window.location.href =
-          "https://baijiahao.baidu.com/s?id=1605742984765506500&wfr=spider&for=pc";
-        return false;
-      }
-    };
+    // document.oncontextmenu = function() {
+    //   return false;
+    // };
+    // document.onkeydown = function(event) {
+    //   var ev = event || window.event || arguments.callee.caller.arguments[0];
+    //   if (ev.keyCode == "123") {
+    //     window.location.href =
+    //       "https://baijiahao.baidu.com/s?id=1605742984765506500&wfr=spider&for=pc";
+    //     return false;
+    //   }
+    // };
     window.onresize = () => {
       this.$refs.navbar.style.borderBottomWidth = window.innerHeight + "px";
+      this.$refs.smallShow.style.marginBottom =
+        -(window.innerHeight - 50) + "px";
     };
   },
   watch: {
@@ -493,5 +507,40 @@ body {
 #app {
   width: 100%;
   height: 100%;
+}
+
+@font-face {
+  font-family: "VINERITC";
+  src: url("./font/VINERITC.ttf");
+}
+.smallShow {
+  font-family: "Microsoft YaHei";
+  width: 3rem;
+  height: 1rem;
+  position: absolute;
+  // margin-bottom: -5rem;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  // flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  p {
+    font-family: "Microsoft YaHei";
+    font-size: 0.38rem;
+    font-weight: 300;
+    color: #202020;
+    span {
+      text-align: center;
+      display: block;
+      font-size: 0.19rem;
+      &:nth-of-type(2) {
+        font-family: "Microsoft YaHei";
+        color: #fff;
+        background-color: #000;
+      }
+    }
+  }
 }
 </style>
