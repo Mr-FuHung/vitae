@@ -4,9 +4,18 @@
         <nav>
           <div class="mapOrImg" :class="{admine:status}" @mouseleave='status=false' @mouseenter='status=true'>
             <img v-show="!status" src="./../img/W-bg1.jpg" title="头像" alt="头像" >
-              <div v-show="status" class="amap-wrapper">
-                <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
-              </div>
+             <template v-show="status">
+    <div class=" amap-wrapper">
+      <el-amap
+        vid="amapDemo"  
+        :center="center"
+        :zoom="zoom"
+        class="amap-demo">
+         <el-amap-marker vid="component-marker"  ></el-amap-marker>
+        <el-amap-marker :content="'I\'m here'" ></el-amap-marker>
+      </el-amap>
+    </div>
+  </template>
           </div>
             <p>您好，我叫符洪，23岁，坐标<span style="color:red;">上海</span>。 我是计算机专业,并对前端很感兴趣，一直也在自学前端，今后的职业规划是朝着全栈发展，
                 目前在学Node.js、Vue。 在工作以月来,本人在公司主要负责整个页面的前端开发，
@@ -22,18 +31,21 @@
 export default {
   data() {
     return {
+      zoom: 15,
+      center:[121.562554,31.206799],
       status: false
     };
   },
   watch: {
     status: function(new1) {
-    if(new1){
-      this.$store.state.mapStatus=false;
-    }else{
-      this.$store.state.mapStatus=true;
+      if (new1) {
+        this.$store.state.mapStatus = false;
+      } else {
+        this.$store.state.mapStatus = true;
+      }
     }
-    }
-  }
+  },
+
 };
 </script>
 
@@ -41,6 +53,7 @@ export default {
 .amap-wrapper {
   width: 100%;
   height: 100%;
+  color: #000;
 }
 
 #two {
@@ -74,7 +87,7 @@ export default {
         overflow: hidden;
         transition: all 1s;
         &:hover {
-          // transform: scale(1.5);
+          transform: scale(1.5);
         }
       }
       p {

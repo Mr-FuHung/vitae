@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+
 // import one from './components/one.vue'
 // import two from './components/two.vue'
 // import three from './components/three.vue'
